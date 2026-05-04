@@ -9,14 +9,16 @@ Participants run, in Claude Code on their laptop:
 ```bash
 git clone https://github.com/degausai/wopa-live-site.git
 cd wopa-live-site
+claude
+```
 
-# ...ask Claude to make a bio page in this site's style, e.g.:
-# "Make me a bio page that fits this site's style. My name is Andu,
-#  my role is Creative Director, one thing about me is I collect vintage
-#  film cameras. Save it as pages/andu.html."
+Once Claude is open in the folder, it reads `CLAUDE.md` and knows the drill: ask for the participant's info, generate `pages/<slug>.html` in the WOPA style, then tell them which command to run to submit.
 
-export WOPA_SUBMIT_URL="<the Cloud Run URL>"
-export WORKSHOP_PASSWORD="<told to you on the day>"
+When the participant is ready to submit:
+
+```bash
+export WOPA_SUBMIT_URL="https://wopa-submit-167057116194.europe-west1.run.app"
+export WORKSHOP_PASSWORD="wopa-dare"
 ./submit.sh "Andu"
 ```
 
