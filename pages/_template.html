@@ -1,0 +1,107 @@
+<!--
+  WOPA participant page template.
+
+  This is the style reference for participant bio pages. Copy this file,
+  rename it to pages/<your-slug>.html, fill in the four placeholders below.
+  Do not edit this template file. Do not edit anything outside pages/.
+
+  Placeholders to replace:
+    [ROLE]      → the participant's role, in caps (e.g. "CREATIVE DIRECTOR")
+    [NAME]      → the participant's name (e.g. "Andu Popescu")
+    [HEADLINE]  → a short punchy headline they'd want as their poster line
+                  (1 line, max ~10 words). The "OUTLINE" span gets the
+                  outlined treatment for visual interest.
+    [BIO]       → the one-thing-about-them, 1-3 sentences, specific not generic.
+
+  Style guardrails:
+    - Hot pink (#ff0080) is the only accent color. Use it sparingly.
+    - System fonts only: Helvetica Neue / Arial / monospace.
+    - One viewport tall. Centered. Scannable in 5 seconds.
+    - No external CDNs, no <script src="...">, no images unless given a URL.
+    - Inline CSS. Single self-contained file.
+    - No em-dashes. Use periods, colons, parentheses, or middle dots (·).
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>[NAME] · WOPA</title>
+<style>
+:root{--pink:#ff0080;--black:#000;--white:#fff;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  font-family:"Helvetica Neue",Arial,sans-serif;
+  background:var(--white);
+  color:var(--black);
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  padding:4rem 1.5rem;
+}
+.container{
+  max-width:760px;
+  margin:0 auto;
+  width:100%;
+}
+.role{
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-size:0.875rem;
+  letter-spacing:0.18em;
+  color:var(--pink);
+  text-transform:uppercase;
+  margin-bottom:2rem;
+  font-weight:700;
+}
+.role::before{content:"// ";opacity:0.5;}
+h1{
+  font-size:clamp(3rem,9vw,6rem);
+  font-weight:900;
+  line-height:0.9;
+  letter-spacing:-0.04em;
+  margin-bottom:2rem;
+  text-transform:uppercase;
+}
+h1 .pink{color:var(--pink);}
+h1 .outline{
+  color:transparent;
+  -webkit-text-stroke:2px var(--black);
+}
+.name{
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-size:0.875rem;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  margin-bottom:1rem;
+  font-weight:700;
+}
+.name::before{content:"NAME ·· ";color:var(--pink);}
+p{
+  font-size:1.25rem;
+  line-height:1.55;
+  font-weight:500;
+  max-width:60ch;
+}
+.tag{
+  display:inline-block;
+  margin-top:2rem;
+  padding:0.5rem 1rem;
+  background:var(--black);
+  color:var(--white);
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-size:0.75rem;
+  letter-spacing:0.15em;
+  text-transform:uppercase;
+}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="role">[ROLE]</div>
+<div class="name">[NAME]</div>
+<h1>[HEADLINE]</h1>
+<p>[BIO]</p>
+<div class="tag">WOPA · TRUTH &amp; DARE</div>
+</div>
+</body>
+</html>

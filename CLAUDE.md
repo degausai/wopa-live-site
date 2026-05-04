@@ -21,24 +21,35 @@ If they don't volunteer the info, ask in plain language: name, role, one thing a
 
 ## How to make the page
 
-1. **Read `index.html` first** to learn the existing style: typography, color palette (hot pink `#ff0080`, black `#000`, white), spacing, the bold headline aesthetic, the Truth & Dare voice.
-2. **Optionally peek at any existing files in `pages/`** to see what other participants did. Don't copy them. Each page should feel different.
-3. **Create `pages/<slug>.html`** where `<slug>` is the participant's name lowercased with non-alphanumeric replaced by `-` (e.g. "Andu Popescu" → `andu-popescu`).
-4. **Style requirements:**
-   - Single self-contained HTML file. Inline CSS in a `<style>` block. No external CDNs, no external fonts (system fonts only). No images unless the participant gave you a URL.
-   - Match the WOPA visual identity: bold sans-serif typography, hot pink as the only accent color, black on white background.
-   - The page is one viewport tall, centered, scannable in 5 seconds. Not a long form bio. Think poster, not resume.
-   - Include: their name (huge headline), their role (small uppercase tag), and the one-thing-about-them as the body. Maybe a tagline or a number that matters to them. Use restraint.
-   - Optional: a small interactive flourish (hover effect, a CSS animation) if it lands the personality.
-5. **Show them the result.** Open it in their browser (`open pages/<slug>.html` on Mac, `start pages/<slug>.html` on Windows) so they can preview before submitting.
-6. **If they want changes**, iterate. Don't ask "what do you want changed?" — just take their feedback and adjust.
+You work from a template. Do NOT design from scratch and do NOT read `index.html`. The template enforces the visual style of participant pages so the gallery stays cohesive.
 
-## Style guardrails
+1. **Read `pages/_template.html`.** It has the four placeholders you need to fill: `[ROLE]`, `[NAME]`, `[HEADLINE]`, `[BIO]`. The CSS, color palette, layout, and structure are already correct. Don't redesign them.
+2. **Decide the slug.** Take the participant's name, lowercase it, replace any non-alphanumeric characters with `-`, strip leading/trailing dashes. "Andu Popescu" → `andu-popescu`. "Mária O'Brien" → `m-ria-o-brien` (or similar).
+3. **Copy the template to `pages/<slug>.html`.** Use your file-write tool. The new file should be a copy of `_template.html`, with the placeholders replaced.
+4. **Fill the placeholders thoughtfully:**
+   - `[ROLE]` → uppercase role, e.g. `CREATIVE DIRECTOR`, `COPYWRITER`, `CFO`.
+   - `[NAME]` → as the participant gave it, mixed case ok.
+   - `[HEADLINE]` → 1 line, max ~10 words. Personal, punchy, specific. Pull it from what they told you about themselves. Use the existing `.pink` and `.outline` spans for visual interest if it fits (one phrase pink, one phrase outlined). Example: "I make `<span class='pink'>weird futures</span>` for `<span class='outline'>quiet brands</span>." Don't force it — if a flat headline lands harder, use a flat headline.
+   - `[BIO]` → 1 to 3 sentences. The one-thing-they-told-you, expanded just enough to feel intentional. Specific over generic. No corporate filler. No "passionate about X."
+5. **Show them the result.** Open it in their browser (`open pages/<slug>.html` on Mac, `start pages/<slug>.html` on Windows).
+6. **If they want changes**, iterate on the placeholders. Do NOT touch the CSS or HTML structure. If they ask for a layout change, gently push back: "the template's locked, but we can sharpen the headline / bio / role to land it better." If they really insist on visual changes, escalate to the presenter.
+
+### What you can NOT do
+
+- **Do not read or edit `index.html`** or anything in `assets-real/`. The home page is fixed.
+- **Do not edit `pages/_template.html`.** It's the source of truth for everyone's page.
+- **Do not edit any other `pages/*.html`.** Other participants' pages are theirs.
+- **Do not add new files outside `pages/<slug>.html`.** No images, no extra CSS files, no JS.
+- **Do not run `git add` / `git commit` / `git push`.** The submit script handles upload.
+
+The whole exercise is one new file at `pages/<slug>.html`. That's the entire scope.
+
+## Style guardrails (for the copy you write into placeholders)
 
 - **No em-dashes** (`—`). Use periods, colons, parentheses, or middle dots (`·`) instead. The WOPA brand voice is punchy, not literary.
 - **No corporate filler.** Don't write "passionate about X" or "results-driven Y". Specific, weird, true beats generic and polished.
 - **No clichés.** If the participant tells you something boring, push for the weirder version. "I like coffee" → "what's your hill-to-die-on coffee opinion?"
-- **Honor the brand.** Pink and black is non-negotiable. The bold headline aesthetic is non-negotiable.
+- **Honor the brand voice.** The template handles the visual brand. Your job is the words: confident, sharp, Truth & Dare energy.
 
 ## When the participant is ready to submit
 
