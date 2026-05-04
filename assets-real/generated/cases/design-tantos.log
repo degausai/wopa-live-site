@@ -1,0 +1,8 @@
+Status: in_progress — polling every 4s (timeout 30m0s)
+Status: in_progress — elapsed 32s
+Status: succeeded — elapsed 56s
+Downloaded to cases/design-tantos.png
+{
+  "inferenceJobId": "019df436-2175-8d54-a245-e07008affc57",
+  "path": "cases/design-tantos.png"
+}

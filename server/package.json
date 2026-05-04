@@ -1,0 +1,14 @@
+{
+  "name": "wopa-submit",
+  "version": "1.0.0",
+  "description": "PR-creating submit endpoint for the WOPA workshop",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.21.0",
+    "multer": "^1.4.5-lts.1"
+  }
+}

@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WOPA — Truth & Dare | Independent Advertising Agency Bucharest</title>
+<!-- Evolution preserves hot pink + B&W palette, hand-drawn arrows, real horse photography placeholders, bold outlined/solid type mix, and all equity taglines -->
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+background:#fff;
+color:#000;
+line-height:1.5;
+overflow-x:hidden;
+}
+:root{
+--pink:#FF0080;
+--black:#000;
+--white:#fff;
+}
+.container{max-width:1280px;margin:0 auto;padding:0 1.5rem;}
+.nav{
+position:fixed;
+top:0;
+left:0;
+right:0;
+z-index:999;
+transition:background .3s,backdrop-filter .3s;
+}
+.nav.scrolled{
+background:rgba(255,255,255,0.98);
+box-shadow:0 2px 12px rgba(0,0,0,0.08);
+backdrop-filter:blur(8px);
+}
+.nav-inner{
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:1rem 1.5rem;
+max-width:1280px;
+margin:0 auto;
+}
+.logo-lockup{
+display:flex;
+align-items:center;
+gap:0.75rem;
+text-decoration:none;
+color:#000;
+}
+.logo-lockup svg{
+width:48px;
+height:48px;
+}
+.logo-text{
+display:flex;
+flex-direction:column;
+line-height:1.1;
+}
+.logo-text strong{
+font-size:1.5rem;
+font-weight:900;
+letter-spacing:-0.02em;
+}
+.logo-text small{
+font-size:0.65rem;
+font-family:ui-monospace,monospace;
+letter-spacing:0.08em;
+opacity:0.7;
+}
+.nav-links{
+display:flex;
+gap:2rem;
+list-style:none;
+}
+.nav-links a{
+font-family:ui-monospace,monospace;
+font-size:0.875rem;
+font-weight:600;
+letter-spacing:0.05em;
+text-decoration:none;
+color:#000;
+transition:color .2s;
+}
+.nav-links a:hover{color:var(--pink);}
+.hero{
+position:relative;
+min-height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+padding:8rem 1.5rem 4rem;
+overflow:hidden;
+}
+.hero-bg{
+position:absolute;
+inset:0;
+z-index:0;
+}
+/* IMG: Photo collage hero — black-and-white person on hot pink horse with saxophone graphic overlay */
+.hero-bg::after{
+content:'';
+position:absolute;
+inset:0;
+background:linear-gradient(to bottom,rgba(255,255,255,0.1),rgba(255,255,255,0.6));
+}
+.hero-content{
+position:relative;
+z-index:1;
+max-width:900px;
+}
+.hero h1{
+font-family:"Helvetica Neue",Arial,sans-serif;
+font-size:clamp(3rem,10vw,7rem);
+font-weight:900;
+line-height:0.95;
+letter-spacing:-0.03em;
+margin-bottom:1.5rem;
+text-transform:uppercase;
+}
+.hero h1 .solid{
+color:var(--black);
+}
+.hero h1 .outline{
+color:transparent;
+-webkit-text-stroke:3px var(--black);
+text-stroke:3px var(--black);
+}
+.hero-sub{
+font-size:clamp(1.1rem,2.5vw,1.5rem);
+margin-bottom:2.5rem;
+font-weight:500;
+}
+.cta{
+display:inline-flex;
+align-items:center;
+gap:0.75rem;
+padding:1rem 2.5rem;
+background:var(--pink);
+color:#fff;
+font-family:"Helvetica Neue",Arial,sans-serif;
+font-size:1.25rem;
+font-weight:800;
+text-transform:uppercase;
+letter-spacing:0.02em;
+text-decoration:none;
+border:none;
+cursor:pointer;
+transition:transform .2s,box-shadow .2s;
+}
+.cta:hover{
+transform:translateY(-2px);
+box-shadow:0 8px 24px rgba(255,0,128,0.4);
+}
+.scroll-hint{
+position:absolute;
+bottom:2rem;
+left:50%;
+transform:translateX(-50%);
+font-family:ui-monospace,monospace;
+font-size:0.75rem;
+letter-spacing:0.1em;
+opacity:0.5;
+animation:bounce 2s infinite;
+}
+@keyframes bounce{
+0%,100%{transform:translate(-50%,0);}
+50%{transform:translate(-50%,8px);}
+}
+section{
+padding:6rem 0;
+position:relative;
+}
+.section-headline{
+font-family:"Helvetica Neue",Arial,sans-serif;
+font-size:clamp(2.5rem,6vw,5rem);
+font-weight:900;
+text-transform:uppercase;
+letter-spacing:-0.02em;
+line-height:0.95;
+margin-bottom:4rem;
+text-align:center;
+}
+.section-headline .solid{color:var(--black);}
+.section-headline .outline{
+color:transparent;
+-webkit-text-stroke:2px var(--black);
+text-stroke:2px var(--black);
+}
+.case-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+gap:2.5rem;
+}
+.case-card{
+position:relative;
+padding:0;
+border:3px solid var(--black);
+background:#fff;
+transition:transform .3s,box-shadow .3s;
+overflow:hidden;
+}
+.case-card:hover{
+transform:translateY(-8px);
+box-shadow:12px 12px 0 var(--pink);
+}
+.case-img{
+width:100%;
+aspect-ratio:4/3;
+margin-bottom:1.5rem;
+overflow:hidden;
+}
+.case-meta{
+font-family:ui-monospace,monospace;
+font-size:0.75rem;
+letter-spacing:0.05em;
+color:var(--pink);
+margin-bottom:0.5rem;
+text-transform:uppercase;
+}
+.case-title{
+font-size:1.5rem;
+font-weight:800;
+margin-bottom:0.75rem;
+line-height:1.2;
+}
+.case-stance{
+font-size:0.95rem;
+margin-bottom:1rem;
+opacity:0.8;
+}
+.case-outcome{
+font-family:ui-monospace,monospace;
+font-size:0.875rem;
+font-weight:700;
+color:var(--pink);
+}
+.arrow-divider{
+width:100%;
+height:80px;
+margin:3rem 0;
+}
+.wopa-band{
+background:var(--black);
+color:var(--white);
+padding:8rem 0;
+text-align:center;
+}
+.wopa-band h2{
+font-family:"Helvetica Neue",Arial,sans-serif;
+font-size:clamp(3rem,10vw,8rem);
+font-weight:900;
+text-transform:uppercase;
+letter-spacing:-0.03em;
+line-height:0.9;
+margin-bottom:2rem;
+}
+.wopa-band h2 .small{
+font-size:0.4em;
+display:block;
+opacity:0.7;
+}
+.wopa-manifesto{
+max-width:800px;
+margin:0 auto 4rem;
+font-size:1.25rem;
+line-height:1.7;
+}
+.horse-row{
+display:flex;
+gap:2rem;
+justify-content:center;
+flex-wrap:wrap;
+margin-top:3rem;
+}
+.horse-placeholder{
+width:200px;
+height:200px;
+background:#333;
+display:flex;
+align-items:center;
+justify-content:center;
+font-family:ui-monospace,monospace;
+font-size:0.7rem;
+color:#666;
+text-align:center;
+padding:1rem;
+}
+.dare-section{
+padding:8rem 0;
+text-align:center;
+position:relative;
+}
+.dare-section h2{
+font-family:"Helvetica Neue",Arial,sans-serif;
+font-size:clamp(2rem,6vw,4rem);
+font-weight:900;
+margin-bottom:1rem;
+}
+.dare-section p{
+font-size:1.25rem;
+margin-bottom:3rem;
+}
+footer{
+background:#f8f8f8;
+padding:4rem 0 2rem;
+}
+.footer-content{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:3rem;
+margin-bottom:3rem;
+}
+.footer-col h3{
+font-size:0.875rem;
+font-family:ui-monospace,monospace;
+letter-spacing:0.1em;
+text-transform:uppercase;
+margin-bottom:1rem;
+}
+.footer-col p,.footer-col a{
+font-size:0.95rem;
+line-height:1.8;
+}
+.footer-col a{
+color:var(--black);
+text-decoration:none;
+transition:color .2s;
+}
+.footer-col a:hover{color:var(--pink);}
+.footer-tagline{
+font-family:"Helvetica Neue",Arial,sans-serif;
+font-size:1.5rem;
+font-weight:900;
+text-transform:uppercase;
+letter-spacing:-0.01em;
+line-height:1.4;
+margin-bottom:1rem;
+}
+.footer-services{
+font-family:ui-monospace,monospace;
+font-size:0.875rem;
+opacity:0.7;
+}
+.footer-bottom{
+text-align:center;
+padding-top:2rem;
+border-top:1px solid #ddd;
+font-size:0.875rem;
+opacity:0.6;
+}
+@media(max-width:768px){
+.nav-links{gap:1rem;font-size:0.75rem;}
+.case-grid{grid-template-columns:1fr;}
+.footer-content{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="mainNav">
+<div class="nav-inner">
+<a href="#" class="logo-lockup">
+<img src="assets-real/wopa-logo.jpg" alt="WOPA — Truth & Dare" class="logo-img" style="height:48px;width:auto;display:block;">
+</a>
+<ul class="nav-links">
+<li><a href="#work">WORK</a></li>
+<li><a href="#services">SERVICES</a></li>
+<li><a href="#about">ABOUT</a></li>
+<li><a href="#contact">CONTACT</a></li>
+</ul>
+</div>
+</nav>
+
+<section class="hero">
+<div class="hero-bg" style="position:absolute;top:5%;right:0;width:55%;height:90%;background:url('assets-real/generated/hero-rocking-horse.png') no-repeat right center;background-size:contain;pointer-events:none;"></div>
+<div class="hero-content" style="position:relative;z-index:2;">
+<h1>
+<span class="solid">TRUTH IN</span><br>
+<span class="solid">BULLSHIT</span> <span class="outline">OUT</span>
+</h1>
+<p class="hero-sub">One scroll closer to the real deal. DIVE IN!</p>
+<a href="#work" class="cta">DIVE IN</a>
+</div>
+<div class="scroll-hint">SCROLL ↓</div>
+</section>
+
+<svg class="arrow-divider" viewBox="0 0 800 80" xmlns="http://www.w3.org/2000/svg">
+<path d="M50 40 Q200 10 400 45 T750 35 L745 28 M750 35 L742 42" stroke="#FF0080" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
+<section id="work">
+<div class="container">
+<img src="assets-real/atl-credentials.gif" alt="ATL" style="max-width:300px;height:auto;display:block;margin:0 auto 1.5rem;">
+<h2 class="section-headline">
+<span class="solid">BIG IDEAS,</span><br>
+<span class="outline">BIGGER MOUTHS</span>
+</h2>
+<div class="case-grid">
+<article class="case-card">
+<div class="case-img"><img src="assets-real/generated/cases/atl-coffee-stories.png" alt="Coffee Stories" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+<div class="case-text" style="padding:2rem;">
+<div class="case-meta">5 TO GO · ATL</div>
+<h3 class="case-title">Coffee Stories</h3>
+<p class="case-stance">Comic-book aesthetic campaign featuring character "Andreea" — storytelling that ran 10 years.</p>
+<div class="case-outcome">TV / Digital / Social / Sustained Brand Love</div>
+</div>
+</article>
+<article class="case-card">
+<div class="case-img"><img src="assets-real/generated/cases/atl-unfamous-chefs.png" alt="Unfamous Chefs" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+<div class="case-text" style="padding:2rem;">
+<div class="case-meta">AGRICOLA · ATL</div>
+<h3 class="case-title">Unfamous Chefs</h3>
+<p class="case-stance">Image campaign celebrating real people cooking real food, not celebrity chefs.</p>
+<div class="case-outcome">TV / Digital / Social / Brand repositioning</div>
+</div>
+</article>
+<article class="case-card">
+<div class="case-img"><img src="assets-real/generated/cases/atl-eat-together.png" alt="Who Eats Together Stays Together" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+<div class="case-text" style="padding:2rem;">
+<div class="case-meta">AGRICOLA · ATL</div>
+<h3 class="case-title">Who Eats Together Stays Together</h3>
+<p class="case-stance">Emotional storytelling around family meals and shared moments.</p>
+<div class="case-outcome">Integrated Campaign / Cultural Relevance</div>
+</div>
+</article>
+</div>
+</div>
+</section>
+
+<svg class="arrow-divider" viewBox="0 0 800 80" xmlns="http://www.w3.org/2000/svg">
+<path d="M750 40 Q600 65 400 35 T50 50 L55 43 M50 50 L58 55" stroke="#FF0080" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
+<section id="services">
+<div class="container">
+<img src="assets-real/BTL-credentials.gif" alt="BTL" style="max-width:300px;height:auto;display:block;margin:0 auto 1.5rem;">
+<h2 class="section-headline">
+<span class="solid">BELOW THE LINE,</span><br>
+<span class="outline">BEYOND LIMITS.</span>
+</h2>
+<div class="case-grid">
+<article class="case-card">
+<div class="case-img"><img src="assets-real/generated/cases/btl-longest-pour.png" alt="The Country's Longest Pour" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+<div class="case-text" style="padding:2rem;">
+<div class="case-meta">BTL · EXPERIENTIAL</div>
+<h3 class="case-title">The Country's Longest Pour</h3>
+<p class="case-stance">Mobile brand experience that turned product demo into national spectacle.</p>
+<div class="case-outcome">Live Engagement / Media Coverage</div>
+</div>
+</article>
+<article class="case-card">
+<div class="case-img"><img src="assets-real/generated/cases/btl-job-came-to-you.png" alt="The Job That Came to You" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+<div class="case-text" style="padding:2rem;">
+<div class="case-meta">BTL · ACTIVATION</div>
+<h3 class="case-title">The Job That Came to You</h3>
+<p class="case-stance">National recruitment caravan bringing opportunity to every region.</p>
+<div class="case-outcome">5,000+ Applicants / 12 Cities</div>
+</div>
+</article>
+<article class="case-card">
+<div class="case-img"><img src="assets-real/generated/cases/btl-window-experience.png" alt="The Window to Experience" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+<div class="case-text" style="padding:2rem;">
+<div class="case-meta">BTL · RETAIL</div>
+<h3 class="case-title">The Window to Experience</h3>
+<p class="case-stance">Transforming retail windows into immersive brand moments.</p>
+<div class="case-outcome">Foot Traffic +40%</div>
+</div>
+</article>
+<article class="case-card">
+<div class="case-img"><img src="assets-real/generated/cases/btl-market-trust.png" alt="A Market of Trust" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+<div class="case-text" style="padding:2rem;">
+<div class="case-meta">BTL · COMMUNITY</div>
+<h3 class="case-title">A Market of Trust</h3>
+<p class="case-stance">Building brand credibility through authentic local connections.</p>
+<div class="case-outcome">Community Engagement / Brand Trust</div>
+</div>
+</article>
+<article class="case-card">
+<div class="case-img"><img src="assets-real/generated/cases/btl-beauty-finds-you.png" alt="Beauty That Finds You" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+<div class="case-text" style="padding:2rem;">
+<div class="case-meta">BTL · SERVICE</div>
+<h3 class="case-title">Beauty That Finds You</h3>
+<p class="case-stance">Mobile service activation redefining convenience and care.</p>
+<div class="case-outcome">1,200+ Sessions / 8 Weeks</div>
+</div>
+</article>
+<article class="case-card">
+<div class="case-img"><img src="assets-real/generated/cases/btl-liver-wake-up.png" alt="A Liver Health Wake-Up Call" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+<div class="case-text" style="padding:2rem;">
+<div class="case-meta">4LIVER · BTL</div>
+<h3 class="case-title">A Liver Health Wake-Up Call</h3>
+<p class="case-stance">Provocative health awareness campaign that didn't preach, just spoke truth.</p>
+<div class="case-outcome">12,000+ Screenings / National Impact</div>
+</div>
+</article>
+</div>
+</div>
+</section>
+
+<svg class="arrow-divider" viewBox="0 0 800 80" xmlns="http://www.w3.org/2000/svg">
+<path d="M50 30 Q180 50 320 25 Q460 5 600 40 T780 35 L775 28 M780 35 L772 40" stroke="#FF0080" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
+<section>
+<div class="container">
+<img src="assets-real/digital-credentials.gif" alt="Digital" style="max-width:300px;height:auto;display:block;margin:0 auto 1.5rem;">
+<h2 class="section-headline">
+<span class="outline">TRUTH</span> <span class="solid">IN EVERY</span><br>
+<span class="solid">CLICK</span>
+</h2>
+<div class="case-grid">
+<article class="case-card">
+<div class="case-img"><img src="assets-real/generated/cases/digital-citeste-eticheta.png" alt="Citește Eticheta" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+<div class="case-text" style="padding:2rem;">
+<div class="case-meta">AGRICOLA · DIGITAL</div>
+<h3 class="case-title">Citește Eticheta</h3>
+<p class="case-stance">Educational campaign empowering consumers to read labels and choose better.</p>
+<div class="case-outcome" style="font-size:1.75rem;margin-top:1rem;">101,301 CLICKS</div>
+</div>
+</article>
+<article class="case-card">
+<div class="case-img"><img src="assets-real/generated/cases/digital-cec-student-free.png" alt="Student Free" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+<div class="case-text" style="padding:2rem;">
+<div class="case-meta">CEC BANK · DIGITAL</div>
+<h3 class="case-title">Student Free</h3>
+<p class="case-stance">360° campaign targeting students across TV, social, influencers, and mobile.</p>
+<div class="case-outcome">15,000+ Account Openings / Youth Engagement</div>
+</div>
+</article>
+</div>
+</div>
+</section>
+
+<svg class="arrow-divider" viewBox="0 0 800 80" xmlns="http://www.w3.org/2000/svg">
+<path d="M750 35 Q620 15 480 40 Q340 60 200 30 T20 45 L28 40 M20 45 L25 52" stroke="#FF0080" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
+<section>
+<div class="container">
+<img src="assets-real/Design-credentials.gif" alt="Graphic Design" style="max-width:300px;height:auto;display:block;margin:0 auto 1.5rem;">
+<h2 class="section-headline">
+<span class="solid">WHAT YOU SEE</span><br>
+<span class="solid">IS WHAT WE</span> <span class="outline">MEAN</span>
+</h2>
+<div class="case-grid">
+<article class="case-card">
+<div class="case-img"><img src="assets-real/generated/cases/design-bcub.png" alt="Full Rebranding" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+<div class="case-text" style="padding:2rem;">
+<div class="case-meta">BCUB · BRANDING</div>
+<h3 class="case-title">Full Rebranding</h3>
+<p class="case-stance">Complete identity overhaul: logo, signage, wayfinding, digital app.</p>
+<div class="case-outcome">Brand refresh / System design</div>
+</div>
+</article>
+<article class="case-card">
+<div class="case-img"><img src="assets-real/generated/cases/design-pain-plaisir.png" alt="Collage-Based Identity" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+<div class="case-text" style="padding:2rem;">
+<div class="case-meta">PAIN PLAISIR · BRANDING</div>
+<h3 class="case-title">Collage-Based Identity</h3>
+<p class="case-stance">Playful, tactile brand world built from paper, texture, and taste.</p>
+<div class="case-outcome">Visual Identity / Packaging / Environment</div>
+</div>
+</article>
+<article class="case-card">
+<div class="case-img"><img src="assets-real/generated/cases/design-tantos.png" alt="New Brand Identity" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+<div class="case-text" style="padding:2rem;">
+<div class="case-meta">TANTOS · BRANDING</div>
+<h3 class="case-title">New Brand Identity</h3>
+<p class="case-stance">Bold, modern identity system that speaks to a new generation.</p>
+<div class="case-outcome">Logo / Guidelines / Launch</div>
+</div>
+</article>
+</div>
+</div>
+</section>
+
+<svg class="arrow-divider" viewBox="0 0 800 80" xmlns="http://www.w3.org/2000/svg">
+<path d="M100 50 Q250 25 400 55 Q550 80 700 45 L695 38 M700 45 L692 50" stroke="#FF0080" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
+<section class="wopa-band" id="about" style="background:#fff;color:#000;padding:4rem 0;">
+<div class="container" style="text-align:center;">
+<img src="assets-real/generated/pony-heads.png" alt="Three horses — one tinted pink" style="display:block;width:100%;max-width:900px;margin:0 auto 2rem;">
+<h2 style="font-size:clamp(3rem,9vw,7rem);font-weight:900;letter-spacing:-.02em;line-height:.95;margin-bottom:1rem;">
+<span style="font-size:.4em;display:block;font-weight:700;letter-spacing:.05em;">WE ARE</span>
+WOPA
+</h2>
+<p style="max-width:560px;margin:0 auto 2rem;font-size:1.125rem;color:#444;">
+Born from strategy, built on bravery, powered by people who know that great work takes risks.
+</p>
+<a href="#contact" style="display:inline-block;background:var(--pink);color:#fff;font-weight:800;padding:1rem 2.5rem;text-decoration:none;font-size:1.125rem;letter-spacing:.05em;">DARE US!</a>
+</div>
+</section>
+
+<svg class="arrow-divider" viewBox="0 0 800 80" xmlns="http://www.w3.org/2000/svg">
+<path d="M700 20 Q550 45 400 15 Q250 -5 100 30 L108 25 M100 30 L105 38" stroke="#FF0080" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
+<section class="dare-section">
+<div class="container">
+<h2>Got a challenge?</h2>
+<p>We don't do safe. We do smart, bold, and unapologetically real.</p>
+<a href="#contact" class="cta">DARE US! →</a>
+</div>
+</section>
+
+<footer id="contact">
+<div class="container">
+<div class="footer-content">
+<div class="footer-col">
+<h3>Contact</h3>
+<p>
+<a href="mailto:office@wopa.ro">office@wopa.ro</a><br>
+Bucharest, Romania<br>
+Str. Example 123, Sector 1
+</p>
+</div>
+<div class="footer-col">
+<h3>Follow</h3>
+<p>
+<a href="#">Instagram</a><br>
+<a href="#">Facebook</a><br>
+<a href="#">LinkedIn</a><br>
+<a href="#">Behance</a>
+</p>
+</div>
+<div class="footer-col">
+<div class="footer-tagline">
+LOCAL. INDEPENDENT.<br>
+NO BULLSHIT.
+</div>
+<div class="footer-services">
+Servicii integrate ATL, BTL, DIGITAL.
+</div>
+</div>
+</div>
+<div class="footer-bottom">
+© 2025 WOPA. Truth & Dare.
+</div>
+</div>
+</footer>
+
+<script>
+const nav=document.getElementById('mainNav');
+window.addEventListener('scroll',()=>{
+if(window.scrollY>100){nav.classList.add('scrolled');}
+else{nav.classList.remove('scrolled');}
+});
+</script>
+
+</body>
+</html>

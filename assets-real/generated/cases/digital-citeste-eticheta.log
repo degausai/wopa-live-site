@@ -1,0 +1,8 @@
+Status: in_progress — polling every 4s (timeout 30m0s)
+Status: in_progress — elapsed 32s
+Status: succeeded — elapsed 48s
+Downloaded to cases/digital-citeste-eticheta.png
+{
+  "inferenceJobId": "019df436-219d-8473-89c4-c8b0d837259c",
+  "path": "cases/digital-citeste-eticheta.png"
+}

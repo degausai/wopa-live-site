@@ -1,0 +1,12 @@
+Status: in_progress — polling every 4s (timeout 30m0s)
+Status: in_progress — elapsed 32s
+Status: in_progress — elapsed 1m4s
+Status: in_progress — elapsed 1m36s
+Status: in_progress — elapsed 2m8s
+Status: locked — elapsed 2m20s
+Status: succeeded — elapsed 2m24s
+Downloaded to cases/digital-cec-student-free.png
+{
+  "inferenceJobId": "019df436-231a-851f-a908-cdb9fd3d37ca",
+  "path": "cases/digital-cec-student-free.png"
+}

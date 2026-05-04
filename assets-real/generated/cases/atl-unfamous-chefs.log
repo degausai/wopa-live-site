@@ -1,0 +1,9 @@
+Status: in_progress — polling every 4s (timeout 30m0s)
+Status: in_progress — elapsed 32s
+Status: in_progress — elapsed 1m4s
+Status: succeeded — elapsed 1m16s
+Downloaded to cases/atl-unfamous-chefs.png
+{
+  "inferenceJobId": "019df436-21d7-8c39-b6bc-6e2dc02ecd13",
+  "path": "cases/atl-unfamous-chefs.png"
+}

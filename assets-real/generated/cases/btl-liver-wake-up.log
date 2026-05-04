@@ -1,0 +1,11 @@
+Status: in_progress — polling every 4s (timeout 30m0s)
+Status: in_progress — elapsed 32s
+Status: in_progress — elapsed 1m4s
+Status: in_progress — elapsed 1m36s
+Status: in_progress — elapsed 2m8s
+Status: succeeded — elapsed 2m20s
+Downloaded to cases/btl-liver-wake-up.png
+{
+  "inferenceJobId": "019df436-21b9-83a6-b5c5-977fb99c9a45",
+  "path": "cases/btl-liver-wake-up.png"
+}

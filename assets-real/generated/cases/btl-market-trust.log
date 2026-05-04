@@ -1,0 +1,11 @@
+Status: in_progress — polling every 4s (timeout 30m0s)
+Status: in_progress — elapsed 32s
+Status: in_progress — elapsed 1m4s
+Status: in_progress — elapsed 1m36s
+Status: in_progress — elapsed 2m8s
+Status: succeeded — elapsed 2m20s
+Downloaded to cases/btl-market-trust.png
+{
+  "inferenceJobId": "019df436-21cf-8235-b1d4-3b2ff6bf9294",
+  "path": "cases/btl-market-trust.png"
+}

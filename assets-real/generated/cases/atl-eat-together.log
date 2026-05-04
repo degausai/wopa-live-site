@@ -1,0 +1,9 @@
+Status: in_progress — polling every 4s (timeout 30m0s)
+Status: in_progress — elapsed 32s
+Status: locked — elapsed 52s
+Status: succeeded — elapsed 56s
+Downloaded to cases/atl-eat-together.png
+{
+  "inferenceJobId": "019df436-21b6-84d1-acb9-9daf101e87ff",
+  "path": "cases/atl-eat-together.png"
+}

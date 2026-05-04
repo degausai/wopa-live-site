@@ -1,0 +1,8 @@
+Status: in_progress — polling every 4s (timeout 30m0s)
+Status: in_progress — elapsed 32s
+Status: succeeded — elapsed 52s
+Downloaded to cases/btl-job-came-to-you.png
+{
+  "inferenceJobId": "019df436-21de-833b-a41c-43afd97db26d",
+  "path": "cases/btl-job-came-to-you.png"
+}

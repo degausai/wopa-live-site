@@ -1,0 +1,8 @@
+Status: in_progress — polling every 4s (timeout 30m0s)
+Status: in_progress — elapsed 32s
+Status: succeeded — elapsed 36s
+Downloaded to cases/design-pain-plaisir.png
+{
+  "inferenceJobId": "019df436-2181-8ca0-a093-8b3d9d27ba2d",
+  "path": "cases/design-pain-plaisir.png"
+}

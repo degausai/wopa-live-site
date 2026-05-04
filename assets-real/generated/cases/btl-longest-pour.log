@@ -1,0 +1,8 @@
+Status: in_progress — polling every 4s (timeout 30m0s)
+Status: in_progress — elapsed 32s
+Status: succeeded — elapsed 1m4s
+Downloaded to cases/btl-longest-pour.png
+{
+  "inferenceJobId": "019df436-2153-80c1-90c6-8f12dddae9b6",
+  "path": "cases/btl-longest-pour.png"
+}
