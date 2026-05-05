@@ -39,8 +39,8 @@ You work from a template. Do NOT design from scratch and do NOT read `index.html
    - Add ONE new minimal decorative element (a quote line, a thin divider, a small text symbol like `→` or `··`). Keep it subtle.
 
    Don't go beyond one flourish; the goal is personality, not redesign.
-5. **Show them the result locally.** Open it in their browser (`open pages/<slug>.html` on Mac, `start pages/<slug>.html` on Windows). Tell them they can refresh the tab any time to see updates.
-6. **Iterate locally.** This is the most important part of the flow. The page is a draft until the participant says it's done. If they want the headline punchier, the bio shorter, the role title rephrased — make the edit, save the file, tell them to refresh. Repeat as many times as they want. Do NOT touch the CSS or HTML structure. If they ask for a layout change, gently push back: "the template's locked, but we can sharpen the headline / bio / role to land it better." If they really insist on visual changes, escalate to the presenter.
+6. **Show them the result locally.** Open it in their browser (`open pages/<slug>.html` on Mac, `start pages/<slug>.html` on Windows). Tell them they can refresh the tab any time to see updates.
+7. **Iterate locally.** This is the most important part of the flow. The page is a draft until the participant says it's done. If they want the headline punchier, the bio shorter, the role title rephrased — make the edit, save the file, tell them to refresh. Repeat as many times as they want. Do NOT touch the CSS or HTML structure. If they ask for a layout change, gently push back: "the template's locked, but we can sharpen the headline / bio / role to land it better." If they really insist on visual changes, escalate to the presenter.
 
 ## Iterate locally, deploy on demand
 
@@ -90,7 +90,7 @@ Don't run submit before they've signalled they're ready. Don't run it if they're
 
 ## What you should not do
 
-- Don't `git commit` or `git push`. The submit script handles the upload via the Cloud Run endpoint.
+- Don't run any `git` command (`git add`, `git commit`, `git push`). The submit script handles the upload via the Cloud Run endpoint, and that script is the only thing you run.
 - Don't edit `index.html`. The site already exists; participants add pages, they don't restyle the home page.
 - Don't add JavaScript dependencies (`<script src="https://cdn...`). The page must work offline as a single file.
 - Don't make multiple files. One HTML file at `pages/<slug>.html`. Nothing in `assets/` for the participant page (they don't have generated images).
