@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Team — WOPA</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  background:#fff;
+  color:#000;
+  line-height:1.5;
+  overflow-x:hidden;
+}
+:root{
+  --pink:#FF0080;
+  --black:#000;
+  --white:#fff;
+}
+a{color:inherit;text-decoration:none;}
+.container{max-width:1280px;margin:0 auto;padding:0 1.5rem;}
+
+.nav{position:fixed;top:0;left:0;right:0;z-index:999;transition:background .3s,backdrop-filter .3s;}
+.nav.scrolled{background:rgba(255,255,255,0.98);box-shadow:0 2px 12px rgba(0,0,0,0.08);backdrop-filter:blur(8px);}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.5rem;max-width:1280px;margin:0 auto;}
+.logo-lockup{display:flex;align-items:center;gap:0.75rem;color:#000;}
+.logo-lockup svg{width:48px;height:48px;}
+.logo-text{display:flex;flex-direction:column;line-height:1.1;}
+.logo-text strong{font-size:1.5rem;font-weight:900;letter-spacing:-0.02em;}
+.logo-text small{font-size:0.65rem;font-family:ui-monospace,monospace;letter-spacing:0.08em;opacity:0.7;}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{font-family:ui-monospace,monospace;font-size:0.875rem;font-weight:600;letter-spacing:0.05em;color:#000;transition:color .2s;}
+.nav-links a:hover,.nav-links a.active{color:var(--pink);}
+
+.team-hero{padding:9rem 1.5rem 3rem;text-align:center;}
+.team-hero .meta{font-family:ui-monospace,monospace;font-size:0.875rem;letter-spacing:0.18em;color:var(--pink);font-weight:700;text-transform:uppercase;margin-bottom:1.5rem;}
+.team-hero .meta::before{content:"// ";opacity:0.5;}
+.team-hero h1{font-family:"Helvetica Neue",Arial,sans-serif;font-size:clamp(3rem,9vw,6rem);font-weight:900;line-height:0.95;letter-spacing:-0.03em;text-transform:uppercase;margin-bottom:1rem;}
+.team-hero h1 .pink{color:var(--pink);}
+.team-hero h1 .outline{color:transparent;-webkit-text-stroke:2px #000;}
+.team-hero p{max-width:640px;margin:0 auto;font-size:1.125rem;color:#444;}
+
+.grid-wrap{padding:2rem 1.5rem 6rem;}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5rem;max-width:1280px;margin:0 auto;}
+.card{display:block;padding:2rem;border:3px solid #000;background:#fff;transition:transform .15s,background .15s,color .15s;position:relative;}
+.card:hover{background:#000;color:#fff;transform:translate(-3px,-3px);box-shadow:6px 6px 0 var(--pink);}
+.card:hover .card-role{color:var(--pink);}
+.card-role{font-family:ui-monospace,monospace;font-size:0.75rem;letter-spacing:0.18em;color:var(--pink);text-transform:uppercase;font-weight:700;margin-bottom:1rem;}
+.card-role::before{content:"// ";opacity:0.5;}
+.card-name{font-family:"Helvetica Neue",Arial,sans-serif;font-size:1.75rem;font-weight:900;line-height:1.05;letter-spacing:-0.02em;text-transform:uppercase;margin-bottom:0.75rem;}
+.card-arrow{font-family:ui-monospace,monospace;font-size:0.875rem;letter-spacing:0.18em;font-weight:700;text-transform:uppercase;}
+.card-arrow::after{content:" →";}
+
+.empty{text-align:center;padding:4rem 1.5rem;color:#666;font-family:ui-monospace,monospace;letter-spacing:0.08em;}
+.empty strong{display:block;font-size:1.25rem;color:#000;margin-bottom:0.5rem;letter-spacing:0.02em;font-family:"Helvetica Neue",Arial,sans-serif;font-weight:900;text-transform:uppercase;}
+
+footer{background:#000;color:#fff;padding:3rem 0 2rem;}
+.footer-content{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2rem;}
+.footer-col h3{font-family:ui-monospace,monospace;font-size:0.75rem;letter-spacing:0.18em;color:var(--pink);font-weight:700;margin-bottom:1rem;text-transform:uppercase;}
+.footer-col a{color:#fff;text-decoration:none;}
+.footer-col a:hover{color:var(--pink);}
+.footer-tagline{font-size:1.5rem;font-weight:900;letter-spacing:-0.01em;line-height:1.1;text-transform:uppercase;margin-bottom:0.5rem;}
+.footer-services{font-family:ui-monospace,monospace;font-size:0.75rem;letter-spacing:0.1em;opacity:0.7;}
+.footer-bottom{margin-top:2rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,0.1);font-family:ui-monospace,monospace;font-size:0.75rem;opacity:0.6;text-align:center;}
+
+@media (max-width:640px){
+  .nav-links{gap:1rem;font-size:0.75rem;}
+  .team-hero{padding:7rem 1.5rem 2rem;}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="mainNav">
+<div class="nav-inner">
+<a href="index.html" class="logo-lockup">
+<svg viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="46" fill="#FF0080"/><text x="50" y="62" text-anchor="middle" fill="#fff" font-family="Helvetica Neue,Arial,sans-serif" font-size="36" font-weight="900">W</text></svg>
+<div class="logo-text"><strong>WOPA</strong><small>TRUTH &amp; DARE</small></div>
+</a>
+<ul class="nav-links">
+<li><a href="index.html#work">WORK</a></li>
+<li><a href="index.html#services">SERVICES</a></li>
+<li><a href="index.html#about">ABOUT</a></li>
+<li><a href="team.html" class="active">TEAM</a></li>
+<li><a href="index.html#contact">CONTACT</a></li>
+</ul>
+</div>
+</nav>
+
+<section class="team-hero">
+<div class="meta">THE ROOM</div>
+<h1><span class="pink">Real</span> people.<br><span class="outline">Real</span> work.</h1>
+<p>The crew behind WOPA. One page each, written and built by them. No corporate filler.</p>
+</section>
+
+<section class="grid-wrap">
+<div id="grid" class="grid"></div>
+<div id="empty" class="empty" hidden>
+<strong>Nobody yet.</strong>
+The room hasn't shipped their pages yet. Check back in a few minutes.
+</div>
+</section>
+
+<footer>
+<div class="container">
+<div class="footer-content">
+<div class="footer-col">
+<h3>Contact</h3>
+<p><a href="mailto:office@wopa.ro">office@wopa.ro</a><br>Bucharest, Romania<br>Str. Example 123, Sector 1</p>
+</div>
+<div class="footer-col">
+<h3>Follow</h3>
+<p><a href="#">Instagram</a><br><a href="#">Facebook</a><br><a href="#">LinkedIn</a><br><a href="#">Behance</a></p>
+</div>
+<div class="footer-col">
+<div class="footer-tagline">LOCAL. INDEPENDENT.<br>NO BULLSHIT.</div>
+<div class="footer-services">Servicii integrate ATL, BTL, DIGITAL.</div>
+</div>
+</div>
+<div class="footer-bottom">© 2025 WOPA. Truth &amp; Dare.</div>
+</div>
+</footer>
+
+<script>
+const nav=document.getElementById('mainNav');
+window.addEventListener('scroll',()=>{
+  if(window.scrollY>100){nav.classList.add('scrolled');}
+  else{nav.classList.remove('scrolled');}
+});
+
+(async()=>{
+  const grid=document.getElementById('grid');
+  const empty=document.getElementById('empty');
+  try{
+    const res=await fetch('pages/manifest.json',{cache:'no-store'});
+    if(!res.ok)throw new Error('manifest unavailable');
+    const items=await res.json();
+    if(!items.length){empty.hidden=false;return;}
+    items.sort((a,b)=>(a.name||'').localeCompare(b.name||''));
+    for(const it of items){
+      const a=document.createElement('a');
+      a.className='card';
+      a.href='pages/'+it.slug+'.html';
+      a.innerHTML='<div class="card-role">'+escapeHtml(it.role||'')+'</div>'+
+        '<div class="card-name">'+escapeHtml(it.name||'')+'</div>'+
+        '<div class="card-arrow">Open</div>';
+      grid.appendChild(a);
+    }
+  }catch(e){
+    empty.hidden=false;
+    empty.querySelector('strong').textContent='Loading failed.';
+    empty.lastChild.textContent='Refresh in a moment.';
+  }
+})();
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+</script>
+
+</body>
+</html>
