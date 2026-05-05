@@ -4,27 +4,21 @@ The redesigned wopa.ro from the [WOPA Session 1 workshop](https://github.com/deg
 
 ## During the session
 
-Participants run, in Claude Code on their laptop:
+Participants do everything inside Claude. They open Claude in any folder and tell it:
 
-```bash
-git clone https://github.com/degausai/wopa-live-site.git
-cd wopa-live-site
-claude
+```
+> clone github.com/degausai/wopa-live-site.git
 ```
 
-Once Claude is open in the folder, it reads `CLAUDE.md` and knows the drill: ask for the participant's info, generate `pages/<slug>.html` in the WOPA style, then tell them which command to run to submit.
+Claude clones, `cd`s in, reads `CLAUDE.md`, and knows the drill: ask for the participant's info, generate `pages/<slug>.html` in the WOPA style, iterate on it locally with the participant.
 
-When the participant is ready to submit:
+When the participant is ready, they tell Claude something like:
 
-```bash
-export WOPA_SUBMIT_URL="https://wopa-submit-167057116194.europe-west1.run.app"
-export WORKSHOP_PASSWORD="wopa-dare"
-./submit.sh "Andu"
+```
+> submit my page with password wopa-dare
 ```
 
-`submit.sh` POSTs the page to a small Cloud Run service. The service opens a PR (or updates an existing one) titled `add page: <name>`. The presenter merges PRs on stage and previews each page in Chrome.
-
-Windows: use `./submit.ps1 "Andu"` instead.
+Claude runs `./submit.sh "<Their Name>"` (or `submit.ps1` on Windows) on their behalf, with `WORKSHOP_PASSWORD` set inline, and reports the PR URL the script printed back. The script POSTs the page to a small Cloud Run service that opens a PR (or updates an existing one) titled `add page: <name>`. The presenter merges PRs on stage and previews each page in Chrome.
 
 ## Structure
 

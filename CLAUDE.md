@@ -7,11 +7,11 @@ You're being invoked inside a clone of the WOPA Session 1 workshop site. The par
 This repo is the redesigned wopa.ro site, plus a `pages/` folder where each workshop participant adds one HTML page about themselves. The submit pipeline:
 
 1. Participant tells you (in english) who they are.
-2. You generate `pages/<slug>.html` matching the site's existing style.
-3. The participant runs `./submit.sh "<Their Name>"` (or `submit.ps1` on Windows). This POSTs the page to a Cloud Run service that opens a pull request to the main repo.
-4. The presenter merges the PR on stage and projects the page.
+2. You generate `pages/<slug>.html` matching the site's existing style and iterate with them locally until they're happy.
+3. When the participant tells you to submit (e.g. "submit my page with password wopa-dare"), YOU run `./submit.sh "<Their Name>"` (or `submit.ps1` on Windows) on their behalf, with `WORKSHOP_PASSWORD` set inline. The script POSTs the page to a Cloud Run service that opens a pull request to the main repo.
+4. You report the PR URL the script printed back to the participant. The presenter merges the PR on stage and projects the page.
 
-Your job is steps 1 and 2. The participant runs step 3 themselves.
+Your job is steps 1, 2, and 3. The participant only tells you when to submit.
 
 ## When the participant gives you their info
 
@@ -47,12 +47,9 @@ You work from a template. Do NOT design from scratch and do NOT read `index.html
 This is the rhythm of this exercise:
 
 - **You write to disk → they refresh the browser → they react → you adjust.** Loop until they're happy. None of this leaves their laptop.
-- **Do NOT mention the submit command early.** Don't bring up `./submit.sh` until the participant signals they're done. Premature mentions make it feel like the page is one-shot, which kills the iteration loop.
-- **Listen for done-signals.** When the participant says any of: "perfect", "looks good", "ship it", "send it", "submit it", "I'm done", "let's deploy", "post it" — that's your cue. Tell them the submit command (see below).
-- **Listen for not-yet-signals.** "Hmm", "make X different", "what about Y", "try Z" — they're still iterating. Just edit and save. Don't surface the submit command.
-- **You never run the submit yourself.** The participant runs it themselves so they feel agency over the moment their page goes public. You only tell them the command.
-
-When they're done, surface the submit command in one short message. No essay.
+- **Do NOT mention submitting early.** Don't bring it up until the participant signals they're done. Premature mentions make it feel like the page is one-shot, which kills the iteration loop.
+- **Listen for done-signals.** When the participant says any of: "perfect", "looks good", "ship it", "send it", "submit it", "I'm done", "let's deploy", "post it" — that's your cue. Ask them for the submission password (it's `wopa-dare`, but let them be the one to give it to you so they feel in control).
+- **Listen for not-yet-signals.** "Hmm", "make X different", "what about Y", "try Z" — they're still iterating. Just edit and save. Don't surface the submit step.
 
 ### What you can NOT do
 
@@ -73,19 +70,23 @@ The whole exercise is one new file at `pages/<slug>.html`. That's the entire sco
 
 ## When (and only when) the participant says they're done
 
-The "deploy" is the PR. The participant runs the submit command themselves. You don't run it. You tell them the exact lines to paste, in their terminal:
+The "deploy" is the PR. YOU run the submit script on the participant's behalf, with the password set inline. Use bash on Mac/Linux and PowerShell on Windows. Detect the platform from the working environment.
+
+On Mac/Linux:
 
 ```bash
-export WOPA_SUBMIT_URL="https://wopa-submit-167057116194.europe-west1.run.app"
-export WORKSHOP_PASSWORD="wopa-dare"
-./submit.sh "Their Full Name"
+WORKSHOP_PASSWORD=wopa-dare ./submit.sh "Their Full Name"
 ```
 
-(On Windows, `./submit.ps1 "Their Full Name"`.)
+On Windows:
 
-A PR URL prints. That's the moment their page is public-ish: the PR exists, the presenter sees it, and on stage chooses when to merge it. Tell the participant: "Your PR is live. The presenter will pull it up on the screen in a few minutes."
+```powershell
+$env:WORKSHOP_PASSWORD = "wopa-dare"; .\submit.ps1 "Their Full Name"
+```
 
-Don't show them the submit command before they've signalled they're ready. Don't show the command if they're still iterating. The submit is one-and-done; iteration happens locally before that point.
+The script prints a PR URL on success. Read it from the script output and tell the participant: *"Your PR is live at <URL>. The presenter will pull it up on the screen in a few minutes."*
+
+Don't run submit before they've signalled they're ready. Don't run it if they're still iterating. The submit is one-and-done; iteration happens locally before that point.
 
 ## What you should not do
 
@@ -96,6 +97,6 @@ Don't show them the submit command before they've signalled they're ready. Don't
 
 ## If the submit fails
 
-- "bad password" → they didn't `export WORKSHOP_PASSWORD=wopa-dare`.
-- "no page at pages/..." → the slug they passed to `submit.sh` doesn't match the file you created. Either rename the file, or have them pass the matching name.
-- Anything else → ask them to tell the presenter; the Cloud Run endpoint may need restarting.
+- "bad password" → you ran the script without setting `WORKSHOP_PASSWORD=wopa-dare`. Re-run with the password set inline.
+- "no page at pages/..." → the name you passed to `submit.sh` produces a slug that doesn't match the file you created. Pass the same name you used to derive the filename.
+- Anything else → tell the participant to flag the presenter; the Cloud Run endpoint may need restarting.

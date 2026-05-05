@@ -5,11 +5,10 @@ param(
 
 $ErrorActionPreference = "Stop"
 
-$endpoint = $env:WOPA_SUBMIT_URL
+$endpoint = if ($env:WOPA_SUBMIT_URL) { $env:WOPA_SUBMIT_URL } else { "https://wopa-submit-167057116194.europe-west1.run.app" }
 $password = $env:WORKSHOP_PASSWORD
 
-if (-not $endpoint) { Write-Host "set `$env:WOPA_SUBMIT_URL (the Cloud Run URL we'll give you)"; exit 1 }
-if (-not $password) { Write-Host "set `$env:WORKSHOP_PASSWORD (we'll tell you the value)"; exit 1 }
+if (-not $password) { Write-Host "set `$env:WORKSHOP_PASSWORD (we'll tell you the value on the day)"; exit 1 }
 
 $slug = ($Name.ToLower() -replace "[^a-z0-9]+", "-").Trim("-")
 $file = "pages/$slug.html"

@@ -2,11 +2,10 @@
 set -e
 
 NAME="${1:?usage: ./submit.sh \"Your Name\"}"
-ENDPOINT="${WOPA_SUBMIT_URL:-}"
+ENDPOINT="${WOPA_SUBMIT_URL:-https://wopa-submit-167057116194.europe-west1.run.app}"
 PASSWORD="${WORKSHOP_PASSWORD:-}"
 
-if [ -z "$ENDPOINT" ]; then echo "set WOPA_SUBMIT_URL (the Cloud Run URL we'll give you)"; exit 1; fi
-if [ -z "$PASSWORD" ]; then echo "set WORKSHOP_PASSWORD (we'll tell you the value)"; exit 1; fi
+if [ -z "$PASSWORD" ]; then echo "set WORKSHOP_PASSWORD (we'll tell you the value on the day)"; exit 1; fi
 
 SLUG=$(echo "$NAME" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9]/-/g' | sed 's/-\+/-/g' | sed 's/^-//;s/-$//')
 FILE="pages/${SLUG}.html"
