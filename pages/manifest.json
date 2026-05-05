@@ -1,1 +1,7 @@
-[]
+[
+  {
+    "slug": "dry-run-two",
+    "name": "Dry Run Two",
+    "role": "PIPELINE QA"
+  }
+]
