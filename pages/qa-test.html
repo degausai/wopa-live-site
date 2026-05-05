@@ -1,0 +1,130 @@
+<!--
+  WOPA participant page template.
+
+  This is the STARTING POINT for participant bio pages, not a strict
+  cage. You're encouraged to put a little personality into your version.
+  Just stay inside the brand and don't break the gallery's coherence.
+
+  How to use:
+    1. Copy this file to pages/<your-slug>.html
+    2. Replace the four placeholders ([ROLE], [NAME], [HEADLINE], [BIO])
+    3. Make ONE small custom flourish if it makes the page feel more "you":
+       - swap which spans use .pink vs .outline
+       - add a hover state on the headline or footer tag
+       - add a subtle CSS animation (fade-in, underline-grow, blink)
+       - tweak font-weight or letter-spacing
+       - add ONE new decorative element (a quote line, a divider, a small
+         emoji-like text symbol). Keep it minimal.
+
+  Stay inside these brand rails (the rest of the room is using the same
+  template; we want the gallery to feel like one site, not 19 art projects):
+    - Color palette: hot pink (#ff0080) + black (#000) + white (#fff). No
+      other colors. (Hex shifts within those three are fine: #ff5a4f or
+      similar coral/pink tones, off-blacks/grays for body text.)
+    - Typography: system fonts only (Helvetica Neue, Arial, ui-monospace).
+      No Google Fonts, no @font-face, no Comic Sans, no fancy display fonts.
+    - Layout: roughly one viewport tall, centered, scannable in 5 seconds.
+      Don't add a long-scroll bio or a hero photo gallery.
+    - Structure: still has the role, name, headline, bio, and the WOPA tag
+      at the bottom. Don't strip those.
+    - No external CDNs. No <script src="...">. No images unless the
+      participant gave you a URL. Inline CSS, single self-contained file.
+    - No em-dashes. Use periods, colons, parentheses, or middle dots (·).
+
+  Placeholders to replace:
+    [ROLE]      → the participant's role, in caps (e.g. "CREATIVE DIRECTOR")
+    [NAME]      → the participant's name (e.g. "Andu Popescu")
+    [HEADLINE]  → 1 line, ~10 words max, personal and specific. Use the
+                  .pink and .outline spans to give visual rhythm.
+    [BIO]       → 1-3 sentences. Specific, weird, true. No corporate filler.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>QA Test · WOPA</title>
+<style>
+:root{--pink:#ff0080;--black:#000;--white:#fff;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  font-family:"Helvetica Neue",Arial,sans-serif;
+  background:var(--white);
+  color:var(--black);
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  padding:4rem 1.5rem;
+}
+.container{
+  max-width:760px;
+  margin:0 auto;
+  width:100%;
+}
+.role{
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-size:0.875rem;
+  letter-spacing:0.18em;
+  color:var(--pink);
+  text-transform:uppercase;
+  margin-bottom:2rem;
+  font-weight:700;
+}
+.role::before{content:"// ";opacity:0.5;}
+.role::after{
+  content:"_";
+  margin-left:0.15em;
+  animation:blink 1s steps(2,start) infinite;
+}
+@keyframes blink{to{visibility:hidden;}}
+h1{
+  font-size:clamp(3rem,9vw,6rem);
+  font-weight:900;
+  line-height:0.9;
+  letter-spacing:-0.04em;
+  margin-bottom:2rem;
+  text-transform:uppercase;
+}
+h1 .pink{color:var(--pink);}
+h1 .outline{
+  color:transparent;
+  -webkit-text-stroke:2px var(--black);
+}
+.name{
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-size:0.875rem;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  margin-bottom:1rem;
+  font-weight:700;
+}
+.name::before{content:"NAME ·· ";color:var(--pink);}
+p{
+  font-size:1.25rem;
+  line-height:1.55;
+  font-weight:500;
+  max-width:60ch;
+}
+.tag{
+  display:inline-block;
+  margin-top:2rem;
+  padding:0.5rem 1rem;
+  background:var(--black);
+  color:var(--white);
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-size:0.75rem;
+  letter-spacing:0.15em;
+  text-transform:uppercase;
+}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="role">DRY-RUN BOT</div>
+<div class="name">QA Test</div>
+<h1>I rehearse the <span class="pink">future</span> so you don't <span class="outline">break it live</span>.</h1>
+<p>An automated rehearsal in a human's seat. I run the workshop before the workshop, so when the real participants show up, the pipes are already warm.</p>
+<div class="tag">WOPA · TRUTH &amp; DARE</div>
+</div>
+</body>
+</html>
