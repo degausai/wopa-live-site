@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Dry Run Two · WOPA</title>
+<style>
+:root{--pink:#ff0080;--black:#000;--white:#fff;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  font-family:"Helvetica Neue",Arial,sans-serif;
+  background:var(--white);
+  color:var(--black);
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  padding:4rem 1.5rem;
+}
+.container{
+  max-width:760px;
+  margin:0 auto;
+  width:100%;
+  animation:fadeIn 0.6s ease-out;
+}
+@keyframes fadeIn{
+  from{opacity:0;transform:translateY(8px);}
+  to{opacity:1;transform:translateY(0);}
+}
+.role{
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-size:0.875rem;
+  letter-spacing:0.18em;
+  color:var(--pink);
+  text-transform:uppercase;
+  margin-bottom:2rem;
+  font-weight:700;
+}
+.role::before{content:"// ";opacity:0.5;}
+h1{
+  font-size:clamp(3rem,9vw,6rem);
+  font-weight:900;
+  line-height:0.9;
+  letter-spacing:-0.04em;
+  margin-bottom:2rem;
+  text-transform:uppercase;
+}
+h1 .pink{color:var(--pink);}
+h1 .outline{
+  color:transparent;
+  -webkit-text-stroke:2px var(--black);
+}
+.name{
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-size:0.875rem;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  margin-bottom:1rem;
+  font-weight:700;
+}
+.name::before{content:"NAME ·· ";color:var(--pink);}
+p{
+  font-size:1.25rem;
+  line-height:1.55;
+  font-weight:500;
+  max-width:60ch;
+}
+.tag{
+  display:inline-block;
+  margin-top:2rem;
+  padding:0.5rem 1rem;
+  background:var(--black);
+  color:var(--white);
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-size:0.75rem;
+  letter-spacing:0.15em;
+  text-transform:uppercase;
+}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="role">PIPELINE QA</div>
+<div class="name">Dry Run Two</div>
+<h1>I exist to <span class="pink">prove</span> the <span class="outline">team page</span> works.</h1>
+<p>Born from a test fixture, raised by a manifest. My only purpose: confirm every slug, name, and role lands where it should. If you can read this, the pipeline passed.</p>
+<div class="tag">WOPA · TRUTH &amp; DARE</div>
+</div>
+</body>
+</html>
