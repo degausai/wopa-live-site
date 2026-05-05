@@ -3,12 +3,13 @@ import multer from "multer";
 
 const REPO = "degausai/wopa-live-site";
 const GH = "https://api.github.com";
-const MANIFEST_PATH = "pages/manifest.json";
 
 const app = express();
 const upload = multer({ limits: { fileSize: 1024 * 1024 } });
 
-app.get("/", (_req, res) => res.type("text/plain").send("wopa submit endpoint. POST a multipart form: name, password, page (file).\n"));
+app.get("/", (_req, res) =>
+  res.type("text/plain").send("wopa submit endpoint. POST a multipart form: name, password, page (file).\n")
+);
 
 app.post("/", upload.single("page"), async (req, res) => {
   try {
@@ -20,9 +21,8 @@ app.post("/", upload.single("page"), async (req, res) => {
     if (!req.file) return res.status(400).send("need a page file (multipart field 'page')\n");
 
     const html = req.file.buffer.toString("utf8");
-    const role = parseRole(html);
     const branch = `participant/${slug}`;
-    const pagePath = `pages/${slug}.html`;
+    const path = `pages/${slug}.html`;
 
     const mainRef = await gh(`/repos/${REPO}/git/ref/heads/main`).then(j);
     const baseSha = mainRef.object.sha;
@@ -34,8 +34,17 @@ app.post("/", upload.single("page"), async (req, res) => {
       await gh(`/repos/${REPO}/git/refs/heads/${branch}`, { method: "PATCH", body: { sha: baseSha, force: true } });
     }
 
-    await putFile(branch, pagePath, html, `add page: ${name}`);
-    await updateManifest(branch, { slug, name, role });
+    const existing = await gh(`/repos/${REPO}/contents/${path}?ref=${branch}`);
+    const sha = existing.ok ? (await existing.json()).sha : undefined;
+    await gh(`/repos/${REPO}/contents/${path}`, {
+      method: "PUT",
+      body: {
+        message: `add page: ${name}`,
+        content: Buffer.from(html, "utf8").toString("base64"),
+        sha,
+        branch,
+      },
+    });
 
     const open = await gh(`/repos/${REPO}/pulls?head=degausai:${branch}&state=open`).then(j);
     let prUrl;
@@ -58,35 +67,6 @@ app.post("/", upload.single("page"), async (req, res) => {
 
 const port = process.env.PORT || 8080;
 app.listen(port, () => console.log(`listening on :${port}`));
-
-function parseRole(html) {
-  const match = html.match(/<div[^>]*class=["'][^"']*\brole\b[^"']*["'][^>]*>([\s\S]*?)<\/div>/i);
-  if (!match) return "";
-  return match[1].replace(/<[^>]+>/g, "").trim();
-}
-
-async function putFile(branch, path, content, message) {
-  const existing = await gh(`/repos/${REPO}/contents/${path}?ref=${branch}`);
-  const sha = existing.ok ? (await existing.json()).sha : undefined;
-  await gh(`/repos/${REPO}/contents/${path}`, {
-    method: "PUT",
-    body: { message, content: Buffer.from(content, "utf8").toString("base64"), sha, branch },
-  });
-}
-
-async function updateManifest(branch, entry) {
-  const existing = await gh(`/repos/${REPO}/contents/${MANIFEST_PATH}?ref=${branch}`);
-  let manifest = [];
-  if (existing.ok) {
-    const data = await existing.json();
-    manifest = JSON.parse(Buffer.from(data.content, "base64").toString("utf8"));
-  }
-  const idx = manifest.findIndex((x) => x.slug === entry.slug);
-  if (idx >= 0) manifest[idx] = { ...manifest[idx], ...entry };
-  else manifest.push(entry);
-  const json = JSON.stringify(manifest, null, 2) + "\n";
-  await putFile(branch, MANIFEST_PATH, json, `update manifest: ${entry.name}`);
-}
 
 async function gh(path, init = {}) {
   const res = await fetch(`${GH}${path}`, {

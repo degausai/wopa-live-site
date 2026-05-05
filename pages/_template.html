@@ -8,7 +8,11 @@
   How to use:
     1. Copy this file to pages/<your-slug>.html
     2. Replace the four placeholders ([ROLE], [NAME], [HEADLINE], [BIO])
-    3. Make ONE small custom flourish if it makes the page feel more "you":
+    3. If the participant gave you a picture, replace [AVATAR] with an
+       <img> tag whose src is a base64 data URL (so the page stays a
+       self-contained file). If they didn't, delete the entire
+       <div class="avatar">[AVATAR]</div> line.
+    4. Make ONE small custom flourish if it makes the page feel more "you":
        - swap which spans use .pink vs .outline
        - add a hover state on the headline or footer tag
        - add a subtle CSS animation (fade-in, underline-grow, blink)
@@ -27,11 +31,13 @@
       Don't add a long-scroll bio or a hero photo gallery.
     - Structure: still has the role, name, headline, bio, and the WOPA tag
       at the bottom. Don't strip those.
-    - No external CDNs. No <script src="...">. No images unless the
-      participant gave you a URL. Inline CSS, single self-contained file.
+    - No external CDNs. No <script src="...">. The page must work when
+      opened directly via file:// (no internet, no server).
     - No em-dashes. Use periods, colons, parentheses, or middle dots (·).
 
   Placeholders to replace:
+    [AVATAR]    → <img src="data:image/jpeg;base64,..."> if a picture was
+                  given. Otherwise delete the whole avatar div.
     [ROLE]      → the participant's role, in caps (e.g. "CREATIVE DIRECTOR")
     [NAME]      → the participant's name (e.g. "Andu Popescu")
     [HEADLINE]  → 1 line, ~10 words max, personal and specific. Use the
@@ -61,6 +67,16 @@ body{
   margin:0 auto;
   width:100%;
 }
+.avatar{
+  width:96px;
+  height:96px;
+  border-radius:50%;
+  overflow:hidden;
+  border:3px solid var(--pink);
+  margin-bottom:1.5rem;
+  background:#f3f3f3;
+}
+.avatar img{width:100%;height:100%;object-fit:cover;display:block;}
 .role{
   font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
   font-size:0.875rem;
@@ -114,6 +130,7 @@ p{
 </head>
 <body>
 <div class="container">
+<div class="avatar">[AVATAR]</div>
 <div class="role">[ROLE]</div>
 <div class="name">[NAME]</div>
 <h1>[HEADLINE]</h1>
